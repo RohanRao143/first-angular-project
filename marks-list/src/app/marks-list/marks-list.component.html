@@ -1,0 +1,26 @@
+<h1>Markslist</h1>
+
+<table class="results centerTable" style="width: 50%" border=1 frame=void rules=rows >
+  <thead>
+  <tr class="heading">
+    <th colspan="4">Student Result Board</th>
+  </tr>
+  <tr>
+    <th><em>Student Name</em></th>
+    <th><em>Roll Number</em></th>
+    <th><em>Total Marks</em></th>
+    <th><em>Status</em></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr [ngClass]="{'color-green' :(result.marks.English+result.marks.Science+result.marks.Maths)== topper,
+      'color-red' :( result.marks.Maths>19?result.marks.Science>19?
+      result.marks.English?'pass':'fail':'fail':'fail')=='fail'}" *ngFor="let result of results | sortInAlphabeticalOrder: 'name' ">
+      <td>{{ result.name | capitalize }}</td>
+      <td>{{result.rollNumber}}</td>
+      <td>{{result.marks.Maths + result.marks.Science + result.marks.English}}</td>
+      <td>{{((result.marks.Maths + result.marks.Science + result.marks.English)!==topper)?
+        (result.marks.Maths>19? (result.marks.Science>19?(result.marks.English>19?'pass':'fail'):'fail'):'fail'):'topper'}}</td>
+  </tr>
+  </tbody>
+</table>
